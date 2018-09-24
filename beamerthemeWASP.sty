@@ -1,0 +1,173 @@
+\ProvidesPackage{beamerthemeWASP}[2018/09/22]
+\RequirePackage{tikz,pgf}
+\usepackage{lmodern}
+\RequirePackage[overload]{textcase}
+\RequirePackage{setspace}
+\usetikzlibrary{shapes,arrows,calc}
+\usepackage{pgfplots}
+\usepackage{MinionPro}
+\usepackage{MyriadPro}
+
+\definecolor{waspgrey}{HTML}{425052}
+\definecolor{wasplightgrey}{HTML}{B3BEBD}
+\definecolor{waspblue}{HTML}{1A8DAD}
+\definecolor{waspmagenta}{HTML}{E83278}
+
+\newcommand{\titlecolor}[1]{\renewcommand{\giventitlecolor}{#1}}
+\newcommand{\titleimage}[1]{\renewcommand{\giventitleimage}{#1}}
+\newcommand{\giventitlecolor}{}
+\newcommand{\giventitleimage}{}
+
+\usetikzlibrary{decorations.pathreplacing, backgrounds, trees, arrows.new, patterns, arrows, shapes, decorations.markings, calc, positioning, fit, matrix, decorations.pathmorphing, pgfplots.statistics}
+
+%Babel support
+\providecommand*{\lulogo}{lulogo-en.pdf}
+\AtBeginDocument{
+  \@ifpackagewith{babel}{swedish}{%
+    \addto\captionsswedish{\renewcommand*\lulogo{lulogo-sv.pdf}}%
+  }{}
+  \@ifpackagewith{babel}{english}{%
+    \addto\captionsenglish{\renewcommand*\lulogo{lulogo-en.pdf}}%
+  }{}
+}
+
+\newcommand{\popup}[2][10cm]{%
+  \vfill
+  \begin{center}
+  \begin{tikzpicture}[overlay]
+    \node[thick, draw, fill=white, text width=#1, text badly centered]{\textbf{#2}};
+  \end{tikzpicture}
+  \end{center}
+}
+
+
+\setbeamercolor{palette primary}{fg=waspgrey,bg=white}
+\setbeamercolor{palette shaded}{fg=waspgrey,bg=wasplightgrey}
+\setbeamercolor{palette secondary}{use=structure,fg=waspblue}
+\setbeamercolor{palette secondary inverted}{use=structure,bg=waspblue,fg=white}
+\setbeamercolor{palette tertiary}{use=structure,fg=waspmagenta}
+\setbeamercolor{palette primary inverted}{fg=white,bg=waspgrey}
+\setbeamercolor{palette white}{fg=white,bg=white}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.05cm]{palette white}{}\end{beamercolorbox}%
+  }%
+
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.05cm]{palette secondary inverted}{}\end{beamercolorbox}%
+  }%
+
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.02cm]{palette white}{}\end{beamercolorbox}%
+  }%
+
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0.15cm,ht=0.7cm]{palette primary inverted}%
+    \hspace{8cm} \includegraphics[width=4cm]{WASP-logo-white.eps}%
+  \end{beamercolorbox}%
+  \vskip0pt%
+}
+\setbeamertemplate{navigation symbols}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outer theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{title page}{
+  \vspace{1.5cm}
+
+  \begin{minipage}[\paperheight]{\paperwidth}
+\begin{center}
+\begin{tikzpicture}%[overlay]
+
+  \node at (0,0) (titlenode) {\includegraphics[width=8cm]{WASP-logo-grey.eps}};
+
+  \node[font=\bf\sffamily\LARGE] at (0, -2cm) {\inserttitle};
+
+\usebeamerfont{title} %set font to title font
+\renewcommand{\baselinestretch}{.9} %reduce line spacing
+
+%draw subtitle if there is one
+\ifx\insertsubtitle\@empty
+      %if there is no subtitle dont draw anything
+    \else
+    	 %draw subtitle and boxes
+     \usebeamerfont{subtitle}
+     \node[anchor=text, draw=none,font=\footnotesize] at ($(titlenode.text)+(0,-.5cm)$) {\MakeUppercase{\insertsubtitle}};
+\fi
+
+\node at (0,-4) {\insertauthor};
+
+% Draw logos
+
+\node[] at (-4.4, -5.5) {\includegraphics[width=1.1cm]{chalmers}};
+\node[] at (-2.2, -5.5) {\includegraphics[width=1.3cm]{kth}};
+\node[] at (0, -5.5) {\includegraphics[width=1.3cm]{liu}};
+\node[] at (2.2, -5.5) {\includegraphics[width=1.3cm]{\lulogo}};
+\node[] at (4.4, -5.5) {\includegraphics[width=1.3cm]{umu}};
+\end{tikzpicture}
+\end{center}
+  \end{minipage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inner Theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+
+\setlength{\leftmargini}{.5em}
+\setlength{\leftmarginii}{1.0em}
+\setlength{\leftmarginiii}{1.5em}
+\setlength{\leftmarginiv}{2.0em}
+\setlength{\leftmarginv}{2.5em}
+\setlength{\leftmarginvi}{3.0em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colours
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usecolortheme[named=waspgrey]{structure}
+\usecolortheme{rose}
+\setbeamercolor{title page}{fg=waspgrey}
+\setbeamercolor{logo}{bg=waspgrey}
+\setbeamercolor{frametitle}{fg=waspgrey,bg=white}
+\setbeamercolor{section in sidebar}{fg=waspgrey}
+\setbeamerfont{section in sidebar}{series=\bfseries}
+\setbeamercolor{block title}{bg=waspblue,fg=waspgrey}
+\setbeamercolor{block body}{bg=waspblue!50!white}
+\setbeamercolor{block title alert}{bg=waspmagenta,fg=waspgrey}
+\setbeamercolor{block body alert}{bg=waspmagenta!50!white}
+\setbeamercolor{block title example}{bg=waspmagenta,fg=waspgrey}
+\setbeamercolor{block body example}{bg=waspmagenta!50!white}
+\setbeamerfont{title}{family={\rmfamily}, series={\bfseries}}
+\setbeamerfont{subtitle}{family={\sffamily},series={\bfseries}}
+\setbeamerfont{frametitle}{family={\rmfamily},series={\bfseries}}
+\setbeamerfont{block title}{family={\rmfamily},series={\bfseries}}
+%\setbeamerfont{framesubtitle}{\uppercase}
+
+\newcommand{\titleframe}{
+\begingroup
+\makeatletter
+\setlength{\hoffset}{-\Gm@lmargin}
+\makeatother
+\begin{frame}[plain,shrink]
+    \titlepage
+\end{frame}
+\endgroup
+}
+
+\newcommand\ThankYouFrame{
+\begin{frame}[plain,t]
+\begin{pgfpicture}
+\pgf@relevantforpicturesizefalse
+\pgftransformxshift{-\Gm@lmargin}
+\pgftransformyshift{5.5pt}
+\DoPurpleBackground
+\end{pgfpicture}
+\end{frame}
+}
