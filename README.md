@@ -16,11 +16,15 @@ that I've seen.
 
 The template depends on the MinionPro and MyriadPro fonts (which are
 the fallback fonts requested by the WASP style guide).  Unfortunately,
-neither ship in typical LaTeX distributions.  There are a number of
-sources around the web on how to install them; the solution I ended up
-picking gave me slightly broken fonts, so I will not describe it here.
-If you have a working solution (including working ligatures), please
-update this!
+neither of them ships in typical LaTeX distributions.  There are a
+number of sources around the web on how to install them; the solution
+I ended up picking gave me slightly broken fonts (resulting in missing
+ligatures for slide headings-- possibly due to some additional hacks
+that I did but forgot to note down).  For reference, the solution I
+used is linked below:
+
+https://github.com/sebschub/FontPro
+
 
 Alternatively, you can remove the MinionPro and MyriadPro references
 in beamerthemeWASP.sty and fall back to regular fonts.  You will
