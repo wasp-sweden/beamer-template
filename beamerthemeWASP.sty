@@ -86,7 +86,7 @@
 
   \node at (0,0) (titlenode) {\includegraphics[width=8cm]{WASP-logo-grey.eps}};
 
-  \node[font=\bf\sffamily\LARGE] at (0, -2cm) {\inserttitle};
+  \node[align=center, font=\bf\sffamily\LARGE, text width=\paperwidth] at (0, -2cm) (TITLENODE) {\inserttitle};
 
 \usebeamerfont{title} %set font to title font
 \renewcommand{\baselinestretch}{.9} %reduce line spacing
@@ -96,8 +96,8 @@
       %if there is no subtitle dont draw anything
     \else
     	 %draw subtitle and boxes
-     \usebeamerfont{subtitle}
-     \node[anchor=text, draw=none,font=\footnotesize] at ($(titlenode.text)+(0,-.5cm)$) {\MakeUppercase{\insertsubtitle}};
+    \usebeamerfont{subtitle}
+    \node[align=center, font=\bf\sffamily, below of=TITLENODE, text width=\paperwidth] {\MakeUppercase{\insertsubtitle}};
 \fi
 
 \node at (0,-4) {\insertauthor};
